@@ -21,9 +21,16 @@ const Navbar = () => {
             window.scrollTo(0, 0); /* will scroll to top of page */
           }} 
         >
-          <img src={logo} alt="logo" className="w-9 h-9 object-contain" /> 
+          <img src={logo} alt="logo" className="w-12 h-12 object-contain" /> 
           <p className="text-white text-[18px] font-bold cursor-pointer">Robert <span className="sm:block hidden">| Tarino</span></p>
         </Link>
+        <ul className="list-none hidden sm:flex flex-row gap-10">
+          {navLinks.map((link) => (  /* dynamic code block; each link will render list item */
+            <li>
+              <a href={`#${link.id}`}>{link.title}</a>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   )
