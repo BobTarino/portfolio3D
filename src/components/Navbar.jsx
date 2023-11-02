@@ -25,8 +25,16 @@ const Navbar = () => {
           <p className="text-white text-[18px] font-bold cursor-pointer">Robert <span className="sm:block hidden">| Tarino</span></p>
         </Link>
         <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.map((link) => (  /* dynamic code block; each link will render list item */
-            <li>
+          {navLinks.map((link) => (  /* dynamic navbar links */
+            <li
+              key={link.id}
+              className={`${
+                active === link.title
+                  ? "text-white"
+                  : "text-secondary"
+              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              onClick={() => setActive(link.title)}
+            >
               <a href={`#${link.id}`}>{link.title}</a>
             </li>
           ))}
