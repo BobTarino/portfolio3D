@@ -58,8 +58,11 @@ const Navbar = () => {
                   active === link.title
                     ? "text-white"
                     : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer`}
-                onClick={() => setActive(link.title)}
+                }  font-poppins font-medium cursor-pointer text-[16px]`}
+                onClick={() => {
+                  setToggle(!toggle) /* close menu after user clicks link */
+                  setActive(link.title);
+                }} 
               >
                 <a href={`#${link.id}`}>{link.title}</a>
               </li>
