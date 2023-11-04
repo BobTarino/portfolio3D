@@ -20,8 +20,15 @@ const Computers = () => { /* 3d model for computer */
 
 const CompuerCanvas = () => {
   return (
-    <Canvas>
-      
+    <Canvas
+      frameLoop="demand"
+      shadows
+      camera={{ position: [20, 3, 5], fov: 25  }} /* x axis-20, y axis -3, z-axis-5, field of view (hiw wide)-25 */
+      gL={{ preserveDrawingBuffer: true }} /* properly render model  */
+    >
+      <Suspense fallback={<CanvasLoader />} /* canvas loader while model is loading*/> 
+        <OrbitControls /*move model left or right*/ />
+      </Suspense>
     </Canvas>
   )
 
