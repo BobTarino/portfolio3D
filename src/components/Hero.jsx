@@ -18,9 +18,9 @@ const Hero = () => {
             EDIT THIS: About Me I develop games and web applications.  
           </p>
         </div>
-
-        <ComputersCanvas />
       </div>
+
+      <ComputersCanvas />
     </section>
   )
 }
