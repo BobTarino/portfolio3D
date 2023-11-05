@@ -1,9 +1,8 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { Canvas } from '@react-three/fiber'; /*importing empty canvas to place something on  */
-import { OrbitControls, Preload, useGLTF } from '@react-three/drei'; /* import 3D models w/ useGLTF*/
+import React, { Suspense, useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber"; /*importing empty canvas to place something on  */
+import { OrbitControls, Preload, useGLTF } from "@react-three/drei"; /* import 3D models w/ useGLTF*/
 
 import CanvasLoader from '../Loader'; 
-
 
 const Computers = () => { /* 3d model for computer */
   const computer = useGLTF('./desktop_pc/scene.gltf')
@@ -12,6 +11,14 @@ const Computers = () => { /* 3d model for computer */
     <mesh>
       <hemisphereLight intensity={0.15} groundColor="black" />
       <pointLight intensity={1} /* glare light on screen*//>
+      <spotLight /*main lighting source */
+        position={[-20, 50, 10]}
+        angle={0.12}
+        penumbra={1}
+        intensity={1}
+        castShadow
+        shadow-mapSize={1024}
+      />
       <primitive /* pass the object for the scene*/
         object={computer.scene}
         scale={0.75}
@@ -26,10 +33,10 @@ const Computers = () => { /* 3d model for computer */
 const ComputerCanvas = () => {
   return (
     <Canvas
-      frameLoop="demand"
+      frameloop="demand"
       shadows
       camera={{ position: [20, 3, 5], fov: 25  }} /* x axis-20, y axis -3, z-axis-5, field of view (hiw wide)-25 */
-      gL={{ preserveDrawingBuffer: true }} /* properly render model  */
+      gl={{ preserveDrawingBuffer: true }} /* properly render model  */
     >
       <Suspense fallback={<CanvasLoader />} /* canvas loader while model is loading*/> 
         <OrbitControls /*move model left or right*/
@@ -47,4 +54,4 @@ const ComputerCanvas = () => {
 
 }
 
-export default Computers
+export default ComputerCanvas
