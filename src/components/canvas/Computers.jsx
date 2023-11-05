@@ -10,12 +10,12 @@ const Computers = () => { /* 3d model for computer */
   return (
     <mesh>
       <hemisphereLight intensity={0.15} groundColor="black" />
-      <pointLight intensity={1} /* glare light on screen*//>
+      <pointLight intensity={1} />
       <spotLight /*main lighting source */
         position={[-20, 50, 10]}
         angle={0.12}
         penumbra={1}
-        intensity={1}
+        intensity={10000}
         castShadow
         shadow-mapSize={1024}
       />
