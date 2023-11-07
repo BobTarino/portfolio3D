@@ -9,9 +9,9 @@ import { fadeIn, textVariant } from '../utils';
 const About = () => {
   return (
     <>
-      <motion.div>
-        <p>Introduction</p>
-        <h2>Overview.</h2>
+      <motion.div /*animate*/ variants={textVariant()} >
+        <p className={styles.sectionSubText}>Introduction</p>
+        <h2 className={styles.sectionHeadText}>Overview.</h2>
       </motion.div>
     </>
   )
