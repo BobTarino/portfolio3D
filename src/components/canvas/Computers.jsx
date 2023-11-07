@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei"; /* import 3
 
 import CanvasLoader from '../Loader'; 
 
-const Computers = () => { /* 3d model for computer */
+const Computers = ({ isMobile }) => { /* 3d model for computer */
   const computer = useGLTF('./desktop_pc/scene.gltf')
 
   return (
@@ -21,16 +21,34 @@ const Computers = () => { /* 3d model for computer */
       />
       <primitive /* pass the object for the scene*/
         object={computer.scene}
-        scale={0.75}
-        position={[0, -3.25, -1.5]}
+        scale={isMobile ? 0.7 : 0.75}
+        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
   )
 }
 
-
 const ComputerCanvas = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  // this useEffect changes the 'isMobile' variable
+  useEffect(() => {
+    //listener for changes to the screen size; check if we're on mobile device
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    //set initial value of 'isMobile' state variable
+    setIsMobile(mediaQuery.matches);
+    //define callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    }
+    //add callback function as listener for changes to the media query
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+    //remove listener when component is unmounted
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+    }
+  }, [])
+  
   return (
     <Canvas
       frameloop="demand"
@@ -45,7 +63,7 @@ const ComputerCanvas = () => {
           maxPolarAngle={Math.PI/ 2}
           minPolarAngle={Math.PI/ 2}
         />
-        <Computers />
+        <Computers isMobile={isMobile} />
       </Suspense>
 
       <Preload all />
