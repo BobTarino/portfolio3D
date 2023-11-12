@@ -6,6 +6,12 @@ import { styles } from '../styles';
 import { services } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 
+const ServiceCard = ({ index, title, icon }) => {
+  return (
+    <p>{title}</p>
+  )
+}
+
 const About = () => {
   return (
     <>
@@ -20,6 +26,12 @@ const About = () => {
       >
         I'm a software developer with experience in C++ and MERN-stack Javascript (MongoDB, Express, React, & Node). Together, we can debug issues, find solutions, and create next-level projects.     
       </motion.p>
+
+      <div /*div containing animated cards*/ className="mt-20 flex flex-wrap gap-10">
+        {services.map((service, index) => ( /*render a card for each service */
+          <ServiceCard key={service.title} index={index} {...service} />
+        ))}
+      </div>
     </>
   )
 }
