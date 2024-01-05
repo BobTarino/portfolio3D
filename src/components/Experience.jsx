@@ -8,15 +8,30 @@ import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
+const ExperienceCard = ({ experience }) => {
+  <VerticalTimelineElement>
+
+  </VerticalTimelineElement>
+}
+
 const Experience = () => {
   return (
     <>
-      <motion.div>
-        
+      <motion.div variants={textVariant()}>
+       <p className={styles.sectionSubText}>What I have done so far</p>
+       <h2 className={styles.sectionHeadText}>Work Experience.</h2>
       </motion.div>
 
+      <div className="mt-20 flex flex-col">
+        <VerticalTimeline>
+          {experiences.map((experience, index) => (
+            <ExperienceCard key={index} experience={experience} />
+          ))}
+
+        </VerticalTimeline>
+      </div>
     </>
   )
 }
 
-export default Experience
+export default SectionWrapper(Experience, "work")
