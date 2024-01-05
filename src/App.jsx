@@ -27,5 +27,5 @@ const App = () => {
 export default App
 
 
-/* https://www.youtube.com/watch?v=0fYi8SGA20k  time stamp: 1:11:42 */
+/* https://www.youtube.com/watch?v=0fYi8SGA20k  time stamp: 1:23:20 */
 
